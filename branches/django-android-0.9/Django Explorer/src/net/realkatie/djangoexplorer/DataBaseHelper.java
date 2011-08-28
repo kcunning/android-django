@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -31,7 +32,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
  
     	super(context, DB_NAME, null, 1);
         this.myContext = context;
-    }	
+    }
+    
  
   /**
      * Creates a empty database on the system and rewrites it with your own database.
@@ -150,4 +152,15 @@ public class DataBaseHelper extends SQLiteOpenHelper{
        // You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
        // to you to create adapters for your views.
  
+	public Cursor getChildren(String parent) {
+		String query;
+		if (parent == "0") {
+			query = "select * from node where child_id is null";
+		} else {
+			query = "select * from node where child_id = " + parent;
+		}
+		System.out.println(query);
+		Cursor result = myDataBase.rawQuery(query, null);
+		return result;
+	}
 }

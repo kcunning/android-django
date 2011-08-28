@@ -13,7 +13,6 @@
     	android:textColor="#092E20"
     	android:background="#ffffff"
     	android:textSize="30px" 
-    	android:gravity="center_vertical|center_horizontal"
     	android:padding="10dip"
     	android:textStyle="bold"/>
     <LinearLayout

@@ -16,5 +16,15 @@
     	android:gravity="center_vertical|center_horizontal"
     	android:padding="10dip"
     	android:textStyle="bold"/>
+    	
+    	<ListView 
+    		android:id="@+id/children"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:padding="10dip"
+    		android:dividerHeight="5dip"
+    		android:divider="#092E20"
+    		android:clickable="true">
+    	</ListView>
    
 </LinearLayout>
