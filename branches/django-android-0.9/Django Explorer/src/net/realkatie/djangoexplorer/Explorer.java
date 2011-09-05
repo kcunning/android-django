@@ -1,8 +1,8 @@
 package net.realkatie.djangoexplorer;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,8 +20,9 @@ import android.widget.TextView;
 
 public class Explorer extends Activity {
 	DataBaseHelper myDbHelper;
-	String title;
+	
 	String parent;
+	List <String> packagesWithModules;
 	List<String> ch = new ArrayList<String>();
 	HashMap<String, String> hash = new HashMap<String, String>();
 	@Override
@@ -31,7 +32,13 @@ public class Explorer extends Activity {
         
         getDb();
         
+        String title;
+        
         Bundle extras = getIntent().getExtras();
+        
+        if (packagesWithModules == null) {
+        	packagesWithModules = myDbHelper.getPackagesWithModules();
+        }
         
         if (extras == null) {
         	title = "django";
@@ -61,17 +68,27 @@ public class Explorer extends Activity {
         childrenView.setClickable(true);
         
         childrenView.setAdapter(new ArrayAdapter<String>(this, R.layout.node_list_item, ch));
-        
+        final String nextTitle = title;
         childrenView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                     int position, long id) {
-            	Intent intent = new Intent(view.getContext(), Explorer.class);
+            	
+            	
             	String itemTitle = (String) ((TextView) view).getText();
-            	title = title + "." + ((TextView) view).getText();
+            	String title = nextTitle + "." + ((TextView) view).getText();
             	String itemId = hash.get(itemTitle);
+            	Intent intent;
+            	if (packagesWithModules.contains(itemId)) {
+            		intent = new Intent(view.getContext(), Package.class);
+            	} else {
+            		intent = new Intent(view.getContext(), Explorer.class);
+            		
+            	}
+            	
             	intent.putExtra("title", title);
             	intent.putExtra("parent_id", itemId);
             	startActivityForResult(intent, 0);
+            	
             }
         });
 			
@@ -82,15 +99,18 @@ public class Explorer extends Activity {
 	public void getDb() {
 		myDbHelper = new DataBaseHelper(this);
         try {
+        	
         	myDbHelper.createDataBase();
         } catch (IOException ioe) {
         	throw new Error("Unable to create database");
         }
  
         try {
+        	
         	myDbHelper.openDataBase();
         }catch(SQLException sqle){
         	throw sqle;
         }
+        
 	}
 }

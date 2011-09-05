@@ -22,7 +22,7 @@
     		android:layout_width="fill_parent"
     		android:layout_height="wrap_content"
     		android:padding="10dip"
-    		android:dividerHeight="5dip"
+    		android:dividerHeight="10dip"
     		android:divider="#092E20"
     		android:clickable="true">
     	</ListView>

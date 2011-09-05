@@ -3,5 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="10dp"
-    android:textSize="16sp" >
+    android:textSize="16sp"
+    android:background="#ffffff"
+    android:textColor="#092E20" >
 </TextView>

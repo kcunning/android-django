@@ -4,6 +4,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -17,12 +20,13 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     //The Android's default system path of your application database.
     private static String DB_PATH = "/data/data/net.realkatie.djangoexplorer/databases/";
  
-    private static String DB_NAME = "data.db";
+    private static String DB_NAME = "django.db";
  
     private SQLiteDatabase myDataBase; 
  
     private final Context myContext;
  
+    List<String> packagesWithModules = new ArrayList<String>();;
     /**
      * Constructor
      * Takes and keeps a reference of the passed context in order to access to the application assets and resources.
@@ -155,12 +159,38 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	public Cursor getChildren(String parent) {
 		String query;
 		if (parent == "0") {
-			query = "select * from node where child_id is null";
+			query = "select * from packages where parent_id is null";
 		} else {
-			query = "select * from node where child_id = " + parent;
+			query = "select * from packages where parent_id = " + parent;
 		}
-		System.out.println(query);
+		
 		Cursor result = myDataBase.rawQuery(query, null);
 		return result;
+	}
+	
+	public List <String> getPackagesWithModules () {
+		String query;
+		query = "select package_id from modules_index";
+		Cursor result = myDataBase.rawQuery(query, null);
+		result.moveToFirst();
+		
+		do {
+			packagesWithModules.add(result.getString(0));
+		} while (result.moveToNext());
+		
+		return packagesWithModules;
+	}
+	
+	public String getDescription(String parent_id) {
+		String desc;
+		
+		String query = "select desc from descriptions where parent_id = " + parent_id;
+		
+		Cursor result = myDataBase.rawQuery(query, null);
+		
+		result.moveToFirst();
+		desc = result.getString(0);
+		
+		return desc;
 	}
 }

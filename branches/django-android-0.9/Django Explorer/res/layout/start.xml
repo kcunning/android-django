@@ -10,12 +10,12 @@
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:text="@string/app_name"
-    	android:textColor="#092E20"
+    	android:textColor="#092E20" 
     	android:background="#ffffff"
     	android:textSize="30px" 
-    	android:padding="10dip"
+    	android:padding="10dip" 
     	android:textStyle="bold"/>
-    <LinearLayout
+    <LinearLayout 
     	android:orientation="horizontal"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
@@ -52,6 +52,8 @@
 			android:layout_marginLeft="10dip"
 			android:layout_marginRight="10dip"
 			android:layout_marginBottom="10dip"
+			android:background="#ffffff"
+			android:padding="10dip"
 			/>
 		<Button 
 			android:id="@+id/explore_button"
@@ -60,6 +62,8 @@
 			android:text="Bookmarks"
 			android:layout_marginLeft="10dip"
 			android:layout_marginRight="10dip"
+			android:background="#ffffff"
+			android:padding="10dip"
 			/>
 		<Button 
 			android:id="@+id/explore_button"
@@ -67,6 +71,8 @@
 			android:layout_width="fill_parent"
 			android:text="Online Docs"
 			android:layout_margin="10dip"
+			android:background="#ffffff"
+			android:padding="10dip"
 			/>
 		<Button 
 			android:id="@+id/explore_button"
@@ -75,6 +81,8 @@
 			android:text="About"
 			android:layout_marginLeft="10dip"
 			android:layout_marginRight="10dip"
+			android:background="#ffffff"
+			android:padding="10dip"
 			/>
 			
 	</LinearLayout>   
