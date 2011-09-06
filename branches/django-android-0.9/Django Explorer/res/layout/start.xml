@@ -6,7 +6,7 @@
     android:background="#092E20"
     android:weightSum="1">
     <TextView 
-    	android:id="@+id/title"
+    	android:id="@+id/title" 
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:text="@string/app_name"
@@ -16,7 +16,7 @@
     	android:padding="10dip" 
     	android:textStyle="bold"/>
     <LinearLayout 
-    	android:orientation="horizontal"
+    	android:orientation="horizontal" 
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:weightSum="10"
