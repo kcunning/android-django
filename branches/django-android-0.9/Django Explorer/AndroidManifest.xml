@@ -13,8 +13,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-		<activity android:name=".Explorer"></activity>
-		<activity android:name=".Package"></activity>
+		<activity android:name=".Packages"></activity>
+		<activity android:name=".Module"></activity>
 				
     </application>
 </manifest>

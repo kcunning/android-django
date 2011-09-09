@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -181,7 +180,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		return packagesWithModules;
 	}
 	
-	public String getDescription(String parent_id) {
+	public String getModuleDescription(String parent_id) {
 		String desc;
 		
 		String query = "select desc from descriptions where parent_id = " + parent_id;
@@ -192,5 +191,13 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		desc = result.getString(0);
 		
 		return desc;
+	}
+	
+	public Cursor getClasses(String parent_id) {
+		String query = "select title from classes where parent_id = " + parent_id;
+		
+		Cursor result = myDataBase.rawQuery(query, null);
+		
+		return result;
 	}
 }
