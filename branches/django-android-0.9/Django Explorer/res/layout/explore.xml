@@ -16,7 +16,14 @@
     	android:gravity="center_vertical|center_horizontal"
     	android:padding="10dip"
     	android:textStyle="bold"/>
-    	
+    	<Button
+    		android:id="@+id/docs"
+    		android:text="Documentation"
+    		android:layout_height="wrap_content"
+    		android:layout_width="fill_parent"
+    		android:layout_margin="10px"
+    		android:padding="10px"
+    	/>
     	<ListView 
     		android:id="@+id/children"
     		android:layout_width="fill_parent"

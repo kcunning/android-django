@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,6 +54,11 @@ public class Packages extends Activity {
         	
         	title = (String) extras.get("title");
         }
+        Button docButton = (Button) findViewById(R.id.docs);
+        
+        if (parent == "0" || !packagesWithModules.contains(parent)) {
+        docButton.setVisibility(View.GONE);
+        }
         
         TextView titleView = (TextView) findViewById(R.id.title);
         titleView.setText(title);
@@ -83,12 +89,9 @@ public class Packages extends Activity {
             	String title = nextTitle + "." + ((TextView) view).getText();
             	String itemId = hash.get(itemTitle);
             	Intent intent;
-            	if (packagesWithModules.contains(itemId)) {
-            		intent = new Intent(view.getContext(), Module.class);
-            	} else {
-            		intent = new Intent(view.getContext(), Packages.class);
-            		
-            	}
+            	
+            	intent = new Intent(view.getContext(), Packages.class);
+            	
             	
             	intent.putExtra("title", title);
             	intent.putExtra("parent_id", itemId);
