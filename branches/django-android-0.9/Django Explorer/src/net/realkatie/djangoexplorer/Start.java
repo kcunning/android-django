@@ -22,5 +22,15 @@ public class Start extends Activity {
 				startActivityForResult(intent, 0);
 			}
 		});
+        
+        final Button aboutButton = (Button) findViewById(R.id.about_button);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), About.class);
+				startActivityForResult(intent, 0);
+				
+			}
+		});
     }
 }

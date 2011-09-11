@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:background="#092E20"
+    android:weightSum="1">
+	<TextView 
+    	android:id="@+id/title" 
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="About Django Explorer"
+    	android:textColor="#092E20" 
+    	android:background="#ffffff"
+    	android:textSize="30px" 
+    	android:padding="10dip" 
+    	android:textStyle="bold"/> 
+    <TextView 
+    	android:id="@+id/about_text"
+    	android:textColor="#092E20"
+    	android:background="#ffffff"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_margin="10px"
+    	android:padding="10px"
+    	android:text="@string/about_text"
+    	/>
+</LinearLayout>

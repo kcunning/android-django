@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Start!</string>
     <string name="app_name">Django Explorer</string>
+    <string name="about_text">This app is not officially endorsed or funded by Django, and was created for free by Katie Cunningham. 
+    The source code is available in Github for all to see, learn from, or help improve, but not to repackage and re-release.</string>
 </resources>

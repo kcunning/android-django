@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	<TextView 
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent" 
+    	android:id="@+id/class_title">
+	</TextView>
+	<TextView
+		android:layout_width="fill_parent"
+    	android:layout_height="fill_parent" 
+    	android:id="@+id/class_desc">
+    </TextView>	
+</LinearView>

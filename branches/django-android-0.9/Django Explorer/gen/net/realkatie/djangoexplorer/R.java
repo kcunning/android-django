@@ -14,25 +14,30 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int children=0x7f050001;
-        public static final int class_desc=0x7f050003;
-        public static final int class_title=0x7f050002;
-        public static final int classes=0x7f050005;
-        public static final int description=0x7f050004;
-        public static final int explore_button=0x7f050008;
-        public static final int search_button=0x7f050007;
-        public static final int search_text=0x7f050006;
+        public static final int about_button=0x7f05000c;
+        public static final int about_text=0x7f050001;
+        public static final int bookmarks_button=0x7f05000a;
+        public static final int children=0x7f050002;
+        public static final int class_desc=0x7f050004;
+        public static final int class_title=0x7f050003;
+        public static final int classes=0x7f050006;
+        public static final int description=0x7f050005;
+        public static final int docs_button=0x7f05000b;
+        public static final int explore_button=0x7f050009;
+        public static final int search_button=0x7f050008;
+        public static final int search_text=0x7f050007;
         public static final int title=0x7f050000;
     }
     public static final class layout {
-        public static final int explore=0x7f030000;
-        public static final int list_with_desc=0x7f030001;
-        public static final int module=0x7f030002;
-        public static final int node_list_item=0x7f030003;
-        public static final int start=0x7f030004;
+        public static final int about=0x7f030000;
+        public static final int explore=0x7f030001;
+        public static final int list_with_desc=0x7f030002;
+        public static final int module=0x7f030003;
+        public static final int node_list_item=0x7f030004;
+        public static final int start=0x7f030005;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
-        public static final int hello=0x7f040000;
+        public static final int about_text=0x7f040001;
+        public static final int app_name=0x7f040000;
     }
 }
