@@ -35,7 +35,7 @@ public class Packages extends Activity {
         
         getDb(); //Creates a connection to the database which can be used for queries
         
-        String title;
+        final String title;
         
         Bundle extras = getIntent().getExtras();
         
@@ -51,13 +51,23 @@ public class Packages extends Activity {
         	parent = "0";
         } else {
         	parent = (String) extras.get("parent_id");
-        	
         	title = (String) extras.get("title");
         }
         Button docButton = (Button) findViewById(R.id.docs);
         
         if (parent == "0" || !packagesWithModules.contains(parent)) {
         docButton.setVisibility(View.GONE);
+        } else {
+        	docButton.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					Intent intent = new Intent(v.getContext(), Module.class);
+					intent.putExtra("parent_id", parent);
+					intent.putExtra("title", title);
+					startActivityForResult(intent, 0);
+					
+				}
+			});
         }
         
         TextView titleView = (TextView) findViewById(R.id.title);

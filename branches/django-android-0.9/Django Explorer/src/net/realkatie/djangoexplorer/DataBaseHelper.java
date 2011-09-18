@@ -194,7 +194,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	}
 	
 	public Cursor getClasses(String parent_id) {
-		String query = "select title from classes where parent_id = " + parent_id;
+		String query = "select title, desc from classes where parent_id = " + parent_id;
 		
 		Cursor result = myDataBase.rawQuery(query, null);
 		

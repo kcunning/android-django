@@ -15,4 +15,8 @@ public class ModuleClass {
 	public void setTitle(String newTitle) {
 		this.title = newTitle;
 	}
+	
+	public void setDescription(String desc) {
+		this.desc = desc;
+	}
 }

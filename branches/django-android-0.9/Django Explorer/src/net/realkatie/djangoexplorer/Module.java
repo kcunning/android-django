@@ -2,12 +2,15 @@ package net.realkatie.djangoexplorer;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +20,7 @@ public class Module extends Activity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+		System.out.println("In Module");
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.module);
         
@@ -28,7 +32,6 @@ public class Module extends Activity {
         String title = extras.getString("title"); 
         String parent_id = extras.getString("parent_id");
         
-        
         TextView titleView = (TextView) findViewById(R.id.title);
         titleView.setText(title);
         
@@ -39,18 +42,21 @@ public class Module extends Activity {
         Cursor classesCursor;
         classesCursor = myDbHelper.getClasses(parent_id);
         
-        List <String> classes = new ArrayList();
+        ArrayList <ModuleClass> classes = new ArrayList();
         if (classesCursor.moveToFirst()) {
         	do {
-        		classes.add(classesCursor.getString(0));
+        		ModuleClass mod = new ModuleClass();
+        		mod.setTitle(classesCursor.getString(0));
+        		mod.setDescription(classesCursor.getString(1));
+        		classes.add(mod);
+        		
         	} while (classesCursor.moveToNext());
         }
         
         ListView classesView = (ListView) findViewById(R.id.classes);
-        ArrayAdapter<String> classesAdapter;
         
-        
-        classesView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, classes));
+        ModuleAdapter adapter = new ModuleAdapter(this, R.layout.list_with_desc, classes);
+        classesView.setAdapter(adapter);
         
         
 	}
@@ -70,5 +76,37 @@ public class Module extends Activity {
         	throw sqle;
         }
         
+	}
+	
+	public class ModuleAdapter extends ArrayAdapter<ModuleClass> {
+
+		private ArrayList<ModuleClass> items;
+		
+		public ModuleAdapter(Context context, int textViewResourceId, ArrayList<ModuleClass> items) {
+			super(context, textViewResourceId);
+			this.items = items;
+		}
+		
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			System.out.println("In getView");
+			View v = convertView;
+			
+			LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = vi.inflate(R.layout.list_with_desc, null);
+            
+			ModuleClass mod = items.get(position);
+			
+				System.out.println("There's a mod");
+				TextView titleView = (TextView) v.findViewById(R.id.class_title);
+				TextView descView = (TextView) v.findViewById(R.id.class_desc);
+				titleView.setText(mod.getTitle());
+				System.out.println(mod.getTitle());
+				descView.setText(mod.getDesc());
+			
+			return v;
+		}
+		
+			
 	}
 }
