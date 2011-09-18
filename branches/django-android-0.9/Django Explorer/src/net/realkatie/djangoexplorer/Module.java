@@ -11,7 +11,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -55,7 +56,7 @@ public class Module extends Activity {
         
         ListView classesView = (ListView) findViewById(R.id.classes);
         
-        ModuleAdapter adapter = new ModuleAdapter(this, R.layout.list_with_desc, classes);
+        ModuleAdapter adapter = new ModuleAdapter(this, classes);
         classesView.setAdapter(adapter);
         
         
@@ -78,35 +79,46 @@ public class Module extends Activity {
         
 	}
 	
-	public class ModuleAdapter extends ArrayAdapter<ModuleClass> {
+	public class ModuleAdapter extends BaseAdapter {
 
-		private ArrayList<ModuleClass> items;
+		private ArrayList<ModuleClass> mods;
+		private Context c;
 		
-		public ModuleAdapter(Context context, int textViewResourceId, ArrayList<ModuleClass> items) {
-			super(context, textViewResourceId);
-			this.items = items;
+		public ModuleAdapter(Context c, ArrayList<ModuleClass> mods) {
+			this.c = c;
+			this.mods = mods;
 		}
 		
-		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return mods.size();
+		}
+
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return mods.get(position);
+		}
+
+		public long getItemId(int id) {
+			// TODO Auto-generated method stub
+			return id;
+		}
+
 		public View getView(int position, View convertView, ViewGroup parent) {
-			System.out.println("In getView");
-			View v = convertView;
+			// TODO Auto-generated method stub
+			LinearLayout rowLayout = new LinearLayout(c);
+			ModuleClass m = mods.get(position);
 			
-			LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.list_with_desc, null);
-            
-			ModuleClass mod = items.get(position);
-			
-				System.out.println("There's a mod");
-				TextView titleView = (TextView) v.findViewById(R.id.class_title);
-				TextView descView = (TextView) v.findViewById(R.id.class_desc);
-				titleView.setText(mod.getTitle());
-				System.out.println(mod.getTitle());
-				descView.setText(mod.getDesc());
-			
-			return v;
+			if (convertView == null) {
+				rowLayout = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.list_with_desc, parent, false);
+				TextView title = (TextView) rowLayout.findViewById(R.id.class_title);
+				title.setText(m.getTitle());
+			}
+			return rowLayout;
 		}
 		
-			
 	}
+		
+			
+	
 }
