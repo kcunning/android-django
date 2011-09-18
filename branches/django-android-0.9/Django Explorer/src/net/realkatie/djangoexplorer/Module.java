@@ -90,29 +90,33 @@ public class Module extends Activity {
 		}
 		
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mods.size();
 		}
 
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mods.get(position);
 		}
 
 		public long getItemId(int id) {
-			// TODO Auto-generated method stub
 			return id;
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			LinearLayout rowLayout = new LinearLayout(c);
+			LinearLayout rowLayout = new LinearLayout(getApplicationContext());
 			ModuleClass m = mods.get(position);
 			
 			if (convertView == null) {
+				System.out.println("It's null");
 				rowLayout = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.list_with_desc, parent, false);
 				TextView title = (TextView) rowLayout.findViewById(R.id.class_title);
 				title.setText(m.getTitle());
+				System.out.println(m.getTitle());
+				
+				TextView desc = (TextView) rowLayout.findViewById(R.id.class_desc);
+				desc.setText(m.getDesc());
+				
+			} else {
+				 rowLayout = (LinearLayout)convertView;
 			}
 			return rowLayout;
 		}
