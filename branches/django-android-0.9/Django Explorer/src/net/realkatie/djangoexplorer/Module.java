@@ -54,6 +54,8 @@ public class Module extends Activity {
         	} while (classesCursor.moveToNext());
         }
         
+        System.out.println(classes.size());
+        
         ListView classesView = (ListView) findViewById(R.id.classes);
         
         ModuleAdapter adapter = new ModuleAdapter(this, classes);
@@ -106,12 +108,9 @@ public class Module extends Activity {
 			ModuleClass m = mods.get(position);
 			
 			if (convertView == null) {
-				System.out.println("It's null");
 				rowLayout = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.list_with_desc, parent, false);
 				TextView title = (TextView) rowLayout.findViewById(R.id.class_title);
 				title.setText(m.getTitle());
-				System.out.println(m.getTitle());
-				
 				TextView desc = (TextView) rowLayout.findViewById(R.id.class_desc);
 				desc.setText(m.getDesc());
 				

@@ -1,0 +1,59 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE packages (
+  _id INTEGER PRIMARY KEY,
+  title char,
+  parent_id INTEGER);
+INSERT INTO "packages" VALUES(1,'bin',NULL);
+INSERT INTO "packages" VALUES(2,'conf',NULL);
+INSERT INTO "packages" VALUES(3,'contrib',NULL);
+INSERT INTO "packages" VALUES(4,'core',NULL);
+INSERT INTO "packages" VALUES(5,'db',NULL);
+INSERT INTO "packages" VALUES(6,'dispatch',NULL);
+INSERT INTO "packages" VALUES(7,'forms',NULL);
+INSERT INTO "packages" VALUES(8,'http',NULL);
+INSERT INTO "packages" VALUES(9,'middleware',NULL);
+INSERT INTO "packages" VALUES(10,'shortcuts',NULL);
+INSERT INTO "packages" VALUES(11,'template',NULL);
+INSERT INTO "packages" VALUES(12,'templatetags',NULL);
+INSERT INTO "packages" VALUES(13,'test',NULL);
+INSERT INTO "packages" VALUES(14,'utils',NULL);
+INSERT INTO "packages" VALUES(15,'views',NULL);
+INSERT INTO "packages" VALUES(16,'profiling',1);
+INSERT INTO "packages" VALUES(17,'app_template',2);
+INSERT INTO "packages" VALUES(18,'locale',2);
+INSERT INTO "packages" VALUES(19,'project_template',2);
+INSERT INTO "packages" VALUES(20,'urls',2);
+INSERT INTO "packages" VALUES(21,'admin',3);
+INSERT INTO "packages" VALUES(22,'admindocs',3);
+INSERT INTO "packages" VALUES(23,'auth',3);
+INSERT INTO "packages" VALUES(24,'comments',3);
+INSERT INTO "packages" VALUES(25,'contenttypes',3);
+INSERT INTO "packages" VALUES(26,'databrowse',3);
+INSERT INTO "packages" VALUES(27,'flatpages',3);
+INSERT INTO "packages" VALUES(28,'formtools',3);
+INSERT INTO "packages" VALUES(29,'gis',3);
+INSERT INTO "packages" VALUES(30,'humanize',3);
+INSERT INTO "packages" VALUES(31,'localflavor',3);
+INSERT INTO "packages" VALUES(32,'markup',3);
+INSERT INTO "packages" VALUES(33,'messages',3);
+INSERT INTO "packages" VALUES(34,'redirects',3);
+INSERT INTO "packages" VALUES(35,'sessions',3);
+INSERT INTO "packages" VALUES(36,'sitemaps',3);
+INSERT INTO "packages" VALUES(37,'sites',3);
+INSERT INTO "packages" VALUES(38,'staticfiles',3);
+INSERT INTO "packages" VALUES(39,'syndication',3);
+INSERT INTO "packages" VALUES(40,'webdesign',3);
+INSERT INTO "packages" VALUES(41,'locale',21);
+INSERT INTO "packages" VALUES(42,'static',21);
+INSERT INTO "packages" VALUES(43,'templates',21);
+INSERT INTO "packages" VALUES(44,'templatetags',21);
+INSERT INTO "packages" VALUES(45,'views',21);
+INSERT INTO "packages" VALUES(46,'admin',42);
+CREATE TABLE "modules" (
+	_id INTEGER PRIMARY KEY,
+	title CHAR,
+	parent_id INTEGER,);
+CREATE TABLE "android_metadata" ("locale" TEXT DEFAULT 'en_US');
+INSERT INTO "android_metadata" VALUES('en_US');
+COMMIT;

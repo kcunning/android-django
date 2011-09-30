@@ -7,14 +7,24 @@
 	>
 	<TextView 
     	android:background="#ffffff"
+    	android:textColor="#111111"
     	android:layout_width="fill_parent"
     	android:layout_height="fill_parent" 
-    	android:id="@+id/class_title">
+    	android:id="@+id/class_title"
+    	android:gravity="center_vertical|center_horizontal"
+    	android:textSize="25px"
+    	android:padding="10px">
     	
 	</TextView>
 	<TextView
+		android:background="#ffffff"
+		android:textColor="#111111"
 		android:layout_width="fill_parent"
     	android:layout_height="fill_parent" 
-    	android:id="@+id/class_desc">
+    	android:id="@+id/class_desc"
+    	android:textSize="20px"
+    	android:paddingLeft="10dip"
+    	android:paddingRight="10dip"
+    	android:paddingBottom="10dip">
     </TextView>	
 </LinearLayout>
