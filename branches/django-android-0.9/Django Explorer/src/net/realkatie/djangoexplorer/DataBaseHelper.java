@@ -155,12 +155,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
        // You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
        // to you to create adapters for your views.
  
-	public Cursor getChildren(String parent) {
+	public Cursor getChildren(String parent, String table) {
 		String query;
 		if (parent == "0") {
-			query = "select * from packages where parent_id is null";
+			query = "select * from " + table + " where parent_id is null";
 		} else {
-			query = "select * from packages where parent_id = " + parent;
+			query = "select * from "+ table + " where parent_id = " + parent;
 		}
 		
 		Cursor result = myDataBase.rawQuery(query, null);
@@ -169,7 +169,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	
 	public List <String> getPackagesWithModules () {
 		String query;
-		query = "select package_id from modules_index";
+		query = "select distinct parent_id from modules";
 		Cursor result = myDataBase.rawQuery(query, null);
 		result.moveToFirst();
 		
@@ -180,10 +180,13 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		return packagesWithModules;
 	}
 	
-	public String getModuleDescription(String parent_id) {
+	
+	public String getDescription(String parent_id, String table) {
 		String desc;
+		String query;
 		
-		String query = "select desc from descriptions where parent_id = " + parent_id;
+		query = "select desc from " + table + " where _id = " + parent_id;
+		
 		
 		Cursor result = myDataBase.rawQuery(query, null);
 		

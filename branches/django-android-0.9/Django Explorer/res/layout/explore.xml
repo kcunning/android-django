@@ -16,22 +16,42 @@
     	android:gravity="center_vertical|center_horizontal"
     	android:padding="10dip"
     	android:textStyle="bold"/>
-    	<Button
-    		android:id="@+id/docs"
-    		android:text="Documentation"
-    		android:layout_height="wrap_content"
-    		android:layout_width="fill_parent"
-    		android:layout_margin="10px"
-    		android:padding="10px"
-    	/>
-    	<ListView 
-    		android:id="@+id/children"
-    		android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"
-    		android:padding="10dip"
-    		android:dividerHeight="10dip"
-    		android:divider="#092E20"
-    		android:clickable="true">
-    	</ListView>
+    <TextView
+    	android:id="@+id/description"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:textColor="#000000"
+    	android:layout_margin="10dip"
+    	android:padding="10dip"
+    	android:background="#ffffff" />
+    <TextView
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:textColor="#ffffff"
+    	android:text="Sub-Packages:" />
+   	<ListView 
+   		android:id="@+id/children"
+   		android:layout_width="fill_parent"
+   		android:layout_height="wrap_content"
+    	android:padding="10dip"
+    	android:dividerHeight="10dip"
+    	android:divider="#092E20"
+    	android:clickable="true">
+    </ListView>
+    <TextView
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:textColor="#ffffff"
+    	android:text="Modules:" />
+    	
+    <ListView
+    	android:id="@+id/modules"
+    	android:layout_width="fill_parent"
+   		android:layout_height="wrap_content"
+    	android:padding="10dip"
+    	android:dividerHeight="10dip"
+    	android:divider="#092E20"
+    	android:clickable="true">
+    </ListView>
    
 </LinearLayout>

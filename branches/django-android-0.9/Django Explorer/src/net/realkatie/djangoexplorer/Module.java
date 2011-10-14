@@ -21,7 +21,6 @@ public class Module extends Activity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-		System.out.println("In Module");
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.module);
         
@@ -36,30 +35,11 @@ public class Module extends Activity {
         TextView titleView = (TextView) findViewById(R.id.title);
         titleView.setText(title);
         
-        String desc = myDbHelper.getModuleDescription(parent_id);
+        String desc = myDbHelper.getDescription(parent_id, "modules");
         TextView descView = (TextView) findViewById(R.id.description);
         descView.setText(desc);
         
-        Cursor classesCursor;
-        classesCursor = myDbHelper.getClasses(parent_id);
         
-        ArrayList <ModuleClass> classes = new ArrayList();
-        if (classesCursor.moveToFirst()) {
-        	do {
-        		ModuleClass mod = new ModuleClass();
-        		mod.setTitle(classesCursor.getString(0));
-        		mod.setDescription(classesCursor.getString(1));
-        		classes.add(mod);
-        		
-        	} while (classesCursor.moveToNext());
-        }
-        
-        System.out.println(classes.size());
-        
-        ListView classesView = (ListView) findViewById(R.id.classes);
-        
-        ModuleAdapter adapter = new ModuleAdapter(this, classes);
-        classesView.setAdapter(adapter);
         
         
 	}

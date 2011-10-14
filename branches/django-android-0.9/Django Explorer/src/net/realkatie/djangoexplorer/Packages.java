@@ -26,6 +26,7 @@ public class Packages extends Activity {
 	String parent;
 	List <String> packagesWithModules;
 	List<String> ch = new ArrayList<String>();
+	List<String> modules = new ArrayList<String>();
 	HashMap<String, String> hash = new HashMap<String, String>();
 
 	@Override
@@ -48,32 +49,26 @@ public class Packages extends Activity {
         
         if (extras == null) {
         	title = "django";
-        	parent = "0";
+        	parent = "1";
         } else {
         	parent = (String) extras.get("parent_id");
         	title = (String) extras.get("title");
         }
-        Button docButton = (Button) findViewById(R.id.docs);
         
-        if (parent == "0" || !packagesWithModules.contains(parent)) {
-        docButton.setVisibility(View.GONE);
+        TextView descView = (TextView) findViewById(R.id.description);
+        String desc = myDbHelper.getDescription(parent, "packages");
+        System.out.println("Desc:" + desc + "Len" + desc.length());
+        if (desc.length() != 0) { 
+        	descView.setText(desc);
         } else {
-        	docButton.setOnClickListener(new View.OnClickListener() {
-				
-				public void onClick(View v) {
-					Intent intent = new Intent(v.getContext(), Module.class);
-					intent.putExtra("parent_id", parent);
-					intent.putExtra("title", title);
-					startActivityForResult(intent, 0);
-					
-				}
-			});
+        	descView.setVisibility(TextView.GONE);
         }
+        
         
         TextView titleView = (TextView) findViewById(R.id.title);
         titleView.setText(title);
         
-        final Cursor cursor = myDbHelper.getChildren(parent);
+        final Cursor cursor = myDbHelper.getChildren(parent, "packages");
         int titleIndex = 1;
         int idIndex = 0;
         if (cursor.moveToFirst()) {
@@ -90,6 +85,7 @@ public class Packages extends Activity {
         
         childrenView.setAdapter(new ArrayAdapter<String>(this, R.layout.node_list_item, ch));
         final String nextTitle = title;
+        
         childrenView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                     int position, long id) {
@@ -109,7 +105,40 @@ public class Packages extends Activity {
             	
             }
         });
-			
+		
+        final Cursor pk_cursor = myDbHelper.getChildren(parent, "modules");
+        titleIndex = 1;
+        idIndex = 0;
+        if (pk_cursor.moveToFirst()) {
+        	do {
+        		modules.add(pk_cursor.getString(titleIndex));
+        		hash.put(pk_cursor.getString(titleIndex), pk_cursor.getString(idIndex));
+        	} while (pk_cursor.moveToNext());
+        }
+        
+       ListView modulesView = (ListView) findViewById(R.id.modules);
+       modulesView.setClickable(true);
+       modulesView.setAdapter(new ArrayAdapter<String>(this, R.layout.node_list_item, modules));
+       
+       modulesView.setOnItemClickListener(new OnItemClickListener() {
+           public void onItemClick(AdapterView<?> parent, View view,
+                   int position, long id) {
+           	
+           	
+           	String itemTitle = (String) ((TextView) view).getText();
+           	String title = nextTitle + "." + ((TextView) view).getText();
+           	String itemId = hash.get(itemTitle);
+           	Intent intent;
+           	
+           	intent = new Intent(view.getContext(), Module.class);
+           	
+           	
+           	intent.putExtra("title", title);
+           	intent.putExtra("parent_id", itemId);
+           	startActivityForResult(intent, 0);
+           	
+           }
+       });
        
         
     }
